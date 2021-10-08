@@ -17,10 +17,10 @@ function App() {
                 <label htmlFor="goals">goals:</label>
                 <input type="number" id="goals" />
               </FormController>
+              <StyledButton>
+                <button type="submit">add</button>
+              </StyledButton>
             </FormItemContainer>
-            <StyledButton>
-              <button type="submit">add</button>
-            </StyledButton>
           </form>
         </div>
         <StyledList>
@@ -68,11 +68,12 @@ const FormItemContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  align-items: center;
 `;
 
 const FormController = styled.div`
-  padding: 10px 5px 20px;
-  width: 50%;
+  padding: 10px 5px;
+  width: 40%;
   display: flex;
   flex-direction: row;
   input {
@@ -90,7 +91,7 @@ const FormController = styled.div`
 `;
 
 const StyledButton = styled.div`
-  width: 30%;
+  width: 20%;
   margin: 0 auto;
   button {
     width: 100%;
