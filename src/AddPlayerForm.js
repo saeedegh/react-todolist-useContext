@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { DataContext } from "./App";
 
-function AddPlayerForm({ submitHandler, setName, setGoals, name, goals }) {
+function AddPlayerForm({ submitHandler }) {
+  const { name, setName, goals, setGoals } = useContext(DataContext);
   return (
     <div>
       <form onSubmit={submitHandler}>

@@ -3,9 +3,13 @@ import styled from "styled-components";
 import AddPlayerForm from "./AddPlayerForm";
 import PlayersList from "./PlayersList";
 
-const DataContext = React.createContext({
+export const DataContext = React.createContext({
   name: "",
   goals: 0,
+  players: [],
+  setName: () => {},
+  setGoals: () => {},
+  setPlayers: () => {},
 });
 
 function App() {
@@ -33,18 +37,14 @@ function App() {
   };
 
   return (
-    <DataContext.Provider>
+    <DataContext.Provider
+      value={{ name, setName, goals, setGoals, players, setPlayers }}
+    >
       <StyledContainer>
         <h1>arrange your football team</h1>
         <div>
-          <AddPlayerForm
-            submitHandler={submitHandler}
-            setName={setName}
-            setGoals={setGoals}
-            name={name}
-            goals={goals}
-          />
-          <PlayersList players={players} setPlayers={setPlayers} />
+          <AddPlayerForm submitHandler={submitHandler} />
+          <PlayersList />
         </div>
       </StyledContainer>
     </DataContext.Provider>
