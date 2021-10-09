@@ -6,9 +6,12 @@ function PlayersList({ players }) {
     <StyledList>
       {players.map((el, index) => (
         <li key={index}>
-          <p>
-            {el.name} <span>(goals:{el.goals})</span>
-          </p>
+          <ListItem>
+            <div>
+              {el.name} <span>(goals:{el.goals})</span>
+            </div>
+            <button type="button">remove</button>
+          </ListItem>
         </li>
       ))}
     </StyledList>
@@ -16,14 +19,33 @@ function PlayersList({ players }) {
 }
 
 const StyledList = styled.ul`
+  width: 50%;
+  margin: 0 auto;
   padding-top: 100px;
+  list-style: none;
   li {
     padding: 5px;
-
     span {
       color: gray;
       font-size: 0.8rem;
       padding-left: 7px;
+    }
+  }
+`;
+
+const ListItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #efefef;
+  padding: 10px 15px;
+  border-radius: 5px;
+
+  button {
+    background: none;
+    color: red;
+    border: none;
+    &:hover {
+      cursor: pointer;
     }
   }
 `;
