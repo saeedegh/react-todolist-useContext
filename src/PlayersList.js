@@ -1,16 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-function PlayersList({ players }) {
+function PlayersList({ players, setPlayers }) {
   return (
     <StyledList>
-      {players.map((el, index) => (
+      {players.map((item, index) => (
         <li key={index}>
           <ListItem>
             <div>
-              {el.name} <span>(goals:{el.goals})</span>
+              {item.name} <span>(goals:{item.goals})</span>
             </div>
-            <button type="button">remove</button>
+            <button
+              type="button"
+              onClick={() =>
+                setPlayers(players.filter((el) => el.id !== item.id))
+              }
+            >
+              remove
+            </button>
           </ListItem>
         </li>
       ))}

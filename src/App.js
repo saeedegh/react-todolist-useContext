@@ -19,7 +19,9 @@ function App() {
     const newPerson = {
       name,
       goals,
+      id: new Date().getTime(),
     };
+    console.log(newPerson);
 
     setPlayers([...players, newPerson]);
     resetForm();
@@ -42,7 +44,7 @@ function App() {
             name={name}
             goals={goals}
           />
-          <PlayersList players={players} />
+          <PlayersList players={players} setPlayers={setPlayers} />
         </div>
       </StyledContainer>
     </DataContext.Provider>
