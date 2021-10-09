@@ -1,21 +1,53 @@
+import React, { useState } from "react";
 import styled from "styled-components";
-import { players } from "./constant";
+// import { players } from "./constant";
 
 function App() {
+  const [name, setName] = useState("");
+  const [goals, setGoals] = useState(0);
+  const [players, setPlayers] = useState([]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(name, goals);
+    const newPerson = {
+      name,
+      goals,
+    };
+
+    setPlayers([...players, newPerson]);
+    resetForm();
+  };
+
+  const resetForm = () => {
+    setName("");
+    setGoals(0);
+  };
+
   return (
     <StyledContainer>
       <h1>arrange your football team</h1>
       <div>
         <div>
-          <form>
+          <form onSubmit={submitHandler}>
             <FormItemContainer>
               <FormController>
                 <label htmlFor="name">name:</label>
-                <input type="text" id="name" />
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </FormController>
               <FormController>
                 <label htmlFor="goals">goals:</label>
-                <input type="number" id="goals" />
+                <input
+                  type="number"
+                  id="goals"
+                  value={goals}
+                  onChange={(e) => setGoals(e.target.value)}
+                />
               </FormController>
               <StyledButton>
                 <button type="submit">add</button>
@@ -38,7 +70,6 @@ function App() {
 }
 
 const StyledContainer = styled.div`
-  height: 100vh;
   width: 80%;
   margin: 0 auto;
   padding: 100px;
