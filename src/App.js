@@ -2,52 +2,19 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AddPlayerForm from "./AddPlayerForm";
 import PlayersList from "./PlayersList";
-
-export const DataContext = React.createContext({
-  name: "",
-  goals: 0,
-  players: [],
-  setName: () => {},
-  setGoals: () => {},
-  setPlayers: () => {},
-});
+import AppContextProvider from "./context/AppContext";
 
 function App() {
-  const [name, setName] = useState("");
-  const [goals, setGoals] = useState(0);
-  const [players, setPlayers] = useState([]);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.log(name, goals);
-    const newPerson = {
-      name,
-      goals,
-      id: new Date().getTime(),
-    };
-    console.log(newPerson);
-
-    setPlayers([...players, newPerson]);
-    resetForm();
-  };
-
-  const resetForm = () => {
-    setName("");
-    setGoals(0);
-  };
-
   return (
-    <DataContext.Provider
-      value={{ name, setName, goals, setGoals, players, setPlayers }}
-    >
+    <AppContextProvider>
       <StyledContainer>
         <h1>arrange your football team</h1>
         <div>
-          <AddPlayerForm submitHandler={submitHandler} />
+          <AddPlayerForm />
           <PlayersList />
         </div>
       </StyledContainer>
-    </DataContext.Provider>
+    </AppContextProvider>
   );
 }
 

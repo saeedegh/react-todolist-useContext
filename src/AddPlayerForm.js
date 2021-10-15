@@ -1,9 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { DataContext } from "./App";
+import { AppContext } from "./context/AppContext";
 
-function AddPlayerForm({ submitHandler }) {
-  const { name, setName, goals, setGoals } = useContext(DataContext);
+function AddPlayerForm() {
+  const { players, setPlayers } = useContext(AppContext);
+
+  const [name, setName] = useState("");
+  const [goals, setGoals] = useState(0);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (name && goals >= 0) {
+      const newPerson = {
+        name,
+        goals,
+        id: new Date().getTime(),
+      };
+
+      setPlayers([...players, newPerson]);
+      resetForm();
+    } else {
+      alert("please fill the inputs");
+    }
+  };
+
+  const resetForm = () => {
+    setName("");
+    setGoals(0);
+  };
   return (
     <div>
       <form onSubmit={submitHandler}>

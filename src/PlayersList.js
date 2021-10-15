@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { DataContext } from "./App";
+import { AppContext } from "./context/AppContext";
 
 function PlayersList({}) {
-  const { players, setPlayers } = useContext(DataContext);
+  const { players, setPlayers } = useContext(AppContext);
   return (
     <StyledList>
       {players.map((item, index) => (
